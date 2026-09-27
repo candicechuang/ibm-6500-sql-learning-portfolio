@@ -1,0 +1,16 @@
+---
+title: "IBM 6500 SQL Learning Portfolio"
+author: "Pei-Yun (Candice) Chuang"
+---
+
+**Student:** Pei-Yun (Candice) Chuang  
+**Course:** IBM 6500
+
+This portfolio collects my DataCamp course-completion evidence and practical learning notes for SQL and BigQuery. I will add the three reports to this site as I complete them.
+
+## Reports
+
+- [Introduction to SQL](introduction-to-sql.html)
+- Introduction to BigQuery (coming later)
+- Intermediate SQL (coming later)
+

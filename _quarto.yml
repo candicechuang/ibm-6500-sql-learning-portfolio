@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "IBM 6500 SQL Learning Portfolio"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: introduction-to-sql.qmd
+        text: Introduction to SQL
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-title: "Contents"
+    toc-depth: 3
+    number-sections: true
+    smooth-scroll: true
+    embed-resources: true
+
