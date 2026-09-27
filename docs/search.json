@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "introduction-to-sql.html",
+    "href": "introduction-to-sql.html",
+    "title": "Introduction to SQL: Course Completion and Learning Notes",
+    "section": "",
+    "text": "Course: IBM 6500\nDataCamp course: Introduction to SQL"
+  },
+  {
+    "objectID": "introduction-to-sql.html#course-completion-evidence",
+    "href": "introduction-to-sql.html#course-completion-evidence",
+    "title": "Introduction to SQL: Course Completion and Learning Notes",
+    "section": "1 Course-Completion Evidence",
+    "text": "1 Course-Completion Evidence\n\n\n\nDataCamp certificate awarded to Pei Yun Chuang for Introduction to SQL\n\n\nCompletion date: September 27, 2026. I completed DataCamp’s Introduction to SQL course on this date."
+  },
+  {
+    "objectID": "introduction-to-sql.html#learning-notes-and-key-takeaways",
+    "href": "introduction-to-sql.html#learning-notes-and-key-takeaways",
+    "title": "Introduction to SQL: Course Completion and Learning Notes",
+    "section": "2 Learning Notes and Key Takeaways",
+    "text": "2 Learning Notes and Key Takeaways\n\n2.1 Relational Databases\nMain ideas. A relational database organizes related information into tables. Each row is one record, and each column describes one attribute. In the course’s library example, one row in books represents one book. A unique id identifies it more reliably than a title, which might be repeated. Separate tables can refer to one another by identifiers. The schema describes the tables and their fields, including data types. Types such as VARCHAR, INT, and NUMERIC matter because names, whole-number identifiers, and decimal prices need different storage and operations. A database server can respond to requests from multiple computers.\nImportant SQL syntax. The chapter introduced table and field names and used SELECT * FROM books; to inspect the supplied table. The * means all columns; FROM identifies the table. Consistent lowercase names with underscores, such as book_id, make field names easier to read.\nSELECT *\nFROM books;\nWhat this example does. It displays every field for every book in the books table. I would use it to inspect a small sample while learning the table structure; for a large table, I would select only the fields I need.\nCEP application. If the PhD Orthodontics team receives approved website and consultation data, separate tables could hold page visits and inquiries. A visit ID or inquiry ID would distinguish records, while a documented schema would clarify what each field means. I would check the definitions and privacy rules before using any patient-related information.\n\n\n2.2 Querying\nMain ideas. A query asks a database for selected data. SELECT chooses fields and FROM chooses the table. DISTINCT removes duplicate results, while AS gives an output column a clearer name. A view saves a query definition so it can be reused. PostgreSQL and SQL Server share core SQL ideas but differ in some syntax: PostgreSQL uses LIMIT at the end of a query, whereas SQL Server uses TOP after SELECT.\nImportant SQL syntax. SELECT, FROM, DISTINCT, AS, CREATE VIEW ... AS, LIMIT, and TOP were practiced in this chapter. I use uppercase keywords and lowercase field names to make queries easier to scan; -- starts a line comment.\nSELECT DISTINCT author AS unique_author\nFROM books;\nWhat this example does. It lists each author once from books and labels the resulting column unique_author. DISTINCT applies to the selected combination of columns: adding genre would return unique author–genre pairs rather than one row per author.\nCREATE VIEW library_authors AS\nSELECT DISTINCT author AS unique_author\nFROM books;\n\nSELECT *\nFROM library_authors;\nWhat this example does. The first statement defines a reusable view, and the second reads its results. A standard view stores the query definition rather than a separate copy of the book records.\n-- PostgreSQL\nSELECT genre\nFROM books\nLIMIT 10;\n\n-- SQL Server equivalent\nSELECT TOP (10) genre\nFROM books;\nWhat this example does. Each version requests at most ten genre values. Without ORDER BY, the chosen ten rows have no guaranteed order. This is useful for previewing data, not for identifying a definitive top ten.\nCEP application. With an approved analytics export in a database, I could select page or device fields to inspect the consultation journey, use DISTINCT to list the page groups represented, and give fields clear aliases for reporting. A reusable view could present an agreed set of non-sensitive website fields to the team. These examples do not imply that we already have access to such data."
+  },
+  {
+    "objectID": "introduction-to-sql.html#overall-reflection-and-future-reference",
+    "href": "introduction-to-sql.html#overall-reflection-and-future-reference",
+    "title": "Introduction to SQL: Course Completion and Learning Notes",
+    "section": "3 Overall Reflection and Future Reference",
+    "text": "3 Overall Reflection and Future Reference\nThe most useful skill for me was turning a question into a small query: first identify the table, then choose the fields needed. Understanding rows, columns, unique IDs, and data types will also help me check whether a dataset is organized well enough to analyze.\nI want more practice with the difference between DISTINCT on one field and on a combination of fields, and with how views are created and reused. I also need to remember the LIMIT and TOP syntax for different SQL systems. For my CEP website analysis, SQL could help organize approved page and inquiry data and make patterns easier to inspect. Any conclusion about why visitors do or do not request a consultation would require more context than a simple query provides."
+  },
+  {
+    "objectID": "introduction-to-sql.html#appendix-publication-links",
+    "href": "introduction-to-sql.html#appendix-publication-links",
+    "title": "Introduction to SQL: Course Completion and Learning Notes",
+    "section": "4 Appendix: Publication Links",
+    "text": "4 Appendix: Publication Links\n\nGitHub Repository\nPublished Introduction to SQL Report"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IBM 6500 SQL Learning Portfolio",
+    "section": "",
+    "text": "Student: Pei-Yun (Candice) Chuang\nCourse: IBM 6500\nThis portfolio collects my DataCamp course-completion evidence and practical learning notes for SQL and BigQuery. I will add the three reports to this site as I complete them."
+  },
+  {
+    "objectID": "index.html#reports",
+    "href": "index.html#reports",
+    "title": "IBM 6500 SQL Learning Portfolio",
+    "section": "1 Reports",
+    "text": "1 Reports\n\nIntroduction to SQL\nIntroduction to BigQuery (coming later)\nIntermediate SQL (coming later)"
+  }
+]
