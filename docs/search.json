@@ -46,6 +46,111 @@
     "href": "index.html#reports",
     "title": "IBM 6500 SQL Learning Portfolio",
     "section": "1 Reports",
-    "text": "1 Reports\n\nIntroduction to SQL\nIntroduction to BigQuery (coming later)\nIntermediate SQL (coming later)"
+    "text": "1 Reports\n\nIntroduction to SQL\nIntroduction to BigQuery\nIntermediate SQL (coming later)"
+  },
+  {
+    "objectID": "introduction-to-bigquery.html",
+    "href": "introduction-to-bigquery.html",
+    "title": "Introduction to BigQuery",
+    "section": "",
+    "text": "This report documents my learning from the DataCamp course Introduction to BigQuery. The course introduced me to how BigQuery is designed for analyzing large datasets in the cloud and how SQL can be used to query, join, manipulate, and optimize data in BigQuery.\nThrough the course exercises, I practiced BigQuery SQL using e-commerce datasets. I learned how BigQuery differs from a traditional SQL database, how to work with nested data, how to use window functions and joins, and how to improve query efficiency. These skills can be useful for digital marketing analytics because marketing datasets can contain large amounts of customer, transaction, website, and campaign data."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#introduction-to-bigquery",
+    "href": "introduction-to-bigquery.html#introduction-to-bigquery",
+    "title": "Introduction to BigQuery",
+    "section": "3.1 Introduction to BigQuery",
+    "text": "3.1 Introduction to BigQuery\nOne of my first takeaways was understanding why BigQuery is useful for analytical work. BigQuery is designed to process large datasets and analytical queries. An important characteristic is the separation of storage and compute resources, which allows large amounts of data to be analyzed efficiently.\nI also learned that BigQuery is different from a traditional transactional SQL database. A traditional database may be more appropriate for applications that constantly insert or update individual transactions, while BigQuery is especially useful when the goal is to analyze large datasets.\nA basic BigQuery query still uses familiar SQL syntax. For example:\nSELECT *\nFROM ecommerce.ecomm_order_details\nLIMIT 3;\nThis query returns all columns but limits the output to three rows. LIMIT is useful when I only want to inspect a small sample of a large dataset."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#querying-data-in-bigquery",
+    "href": "introduction-to-bigquery.html#querying-data-in-bigquery",
+    "title": "Introduction to BigQuery",
+    "section": "3.2 Querying Data in BigQuery",
+    "text": "3.2 Querying Data in BigQuery\nThis part of the course showed me that BigQuery supports familiar SQL operations but also provides features that are especially useful when working with analytical data.\n\n3.2.1 Nested and Repeated Data\nOne important BigQuery concept was working with nested data. BigQuery can store repeated information inside a record. Instead of always separating information into multiple traditional tables, some related values can exist inside nested or repeated fields.\nTo analyze repeated data, I learned to use UNNEST().\nFor example:\nSELECT\n  o.order_id,\n  item.price\nFROM ecommerce.ecomm_orders o\nCROSS JOIN UNNEST(o.order_items) AS item;\nUNNEST() expands the repeated order_items data so that the individual items can be queried. This was one of the BigQuery-specific concepts that was different from the basic SQL skills I learned previously.\n\n\n3.2.2 Window Functions\nI also practiced window functions. Window functions allow calculations across related rows without reducing the results into one row per group.\nFor example, a rolling average can be calculated using:\nAVG(price) OVER (\n  ORDER BY order_purchase_timestamp\n  ROWS BETWEEN 9 PRECEDING AND CURRENT ROW\n)\nThis calculates an average using the current row and the previous nine rows.\nI learned that BigQuery also provides the QUALIFY clause, which can filter the results of a window function.\nFor example:\nQUALIFY rolling_avg &gt; 500\nThis is useful because the result of a window function can be filtered directly after it is calculated.\nFor digital marketing, window functions could be useful for examining moving averages in website traffic, conversions, sales, or campaign performance over time."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#inner-join",
+    "href": "introduction-to-bigquery.html#inner-join",
+    "title": "Introduction to BigQuery",
+    "section": "4.1 INNER JOIN",
+    "text": "4.1 INNER JOIN\nAn INNER JOIN returns only records that satisfy the join condition in both tables.\nThis is useful when I only want records that have matching information in both datasets."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#left-join",
+    "href": "introduction-to-bigquery.html#left-join",
+    "title": "Introduction to BigQuery",
+    "section": "4.2 LEFT JOIN",
+    "text": "4.2 LEFT JOIN\nA LEFT JOIN keeps all records from the table on the left side of the join, even when a matching record does not exist in the other table.\nExample:\nSELECT *\nFROM orders o\nLEFT JOIN products p\nON p.product_id = o.product_id;\nThis could be useful when I want to keep every order even if some product information is missing."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#right-join",
+    "href": "introduction-to-bigquery.html#right-join",
+    "title": "Introduction to BigQuery",
+    "section": "4.3 RIGHT JOIN",
+    "text": "4.3 RIGHT JOIN\nA RIGHT JOIN keeps all records from the table on the right side of the join.\nThis can be useful when the right-side table contains the complete set of records that I need to preserve."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#full-outer-join",
+    "href": "introduction-to-bigquery.html#full-outer-join",
+    "title": "Introduction to BigQuery",
+    "section": "4.4 FULL OUTER JOIN",
+    "text": "4.4 FULL OUTER JOIN\nA FULL OUTER JOIN keeps matching and nonmatching records from both tables.\nThis can be useful when comparing two datasets and identifying records that may exist in only one of them."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#cross-join-and-unnest",
+    "href": "introduction-to-bigquery.html#cross-join-and-unnest",
+    "title": "Introduction to BigQuery",
+    "section": "4.5 CROSS JOIN and UNNEST",
+    "text": "4.5 CROSS JOIN and UNNEST\nI also practiced using a CROSS JOIN with UNNEST():\nSELECT\n  o.order_id,\n  item.price\nFROM ecommerce.ecomm_orders o\nCROSS JOIN UNNEST(o.order_items) item;\nThis expands nested values from the order_items field and connects them to the original order."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#joins-with-aggregations",
+    "href": "introduction-to-bigquery.html#joins-with-aggregations",
+    "title": "Introduction to BigQuery",
+    "section": "4.6 Joins with Aggregations",
+    "text": "4.6 Joins with Aggregations\nJoins can also be combined with aggregate functions.\nFor example:\nWITH orders AS (\n  SELECT\n    o.order_id,\n    item.product_id\n  FROM ecommerce.ecomm_orders o,\n  UNNEST(o.order_items) item\n)\n\nSELECT\n  p.product_id,\n  COUNT(o.order_id)\nFROM orders o\nJOIN ecommerce.ecomm_products p\n  ON p.product_id = o.product_id\nGROUP BY p.product_id;\nThis type of query can be used to calculate the number of orders associated with each product.\nIn a marketing context, the same idea could be used to connect customers, products, transactions, campaigns, or website behavior before calculating performance metrics."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#select-only-required-columns",
+    "href": "introduction-to-bigquery.html#select-only-required-columns",
+    "title": "Introduction to BigQuery",
+    "section": "6.1 Select Only Required Columns",
+    "text": "6.1 Select Only Required Columns\nInstead of using:\nSELECT *\nFROM ecommerce.ecomm_payments;\nI can select only the columns needed for the analysis:\nSELECT\n  order_id,\n  payment_type\nFROM ecommerce.ecomm_payments\nLIMIT 10;\nThis reduces the amount of unnecessary data processed."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#filtering-data",
+    "href": "introduction-to-bigquery.html#filtering-data",
+    "title": "Introduction to BigQuery",
+    "section": "6.2 Filtering Data",
+    "text": "6.2 Filtering Data\nFiltering data can also reduce the amount of information needed for an analysis.\nFor example, I practiced identifying orders based on a time period using TIMESTAMP_SUB():\nSELECT\n  order_id,\n  order_purchase_timestamp\nFROM ecommerce.ecomm_order_details\nWHERE order_purchase_timestamp &lt;=\n      TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 90 DAY);\nThis query identifies orders that occurred at least 90 days before the current timestamp."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#partitions-and-clusters",
+    "href": "introduction-to-bigquery.html#partitions-and-clusters",
+    "title": "Introduction to BigQuery",
+    "section": "6.3 Partitions and Clusters",
+    "text": "6.3 Partitions and Clusters\nI learned that table partitions and clusters can improve query performance. They help BigQuery reduce the amount of data that needs to be scanned when a query uses appropriate filtering conditions.\nThis is especially important for very large datasets where scanning unnecessary data can increase processing time and cost."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#approximate-functions",
+    "href": "introduction-to-bigquery.html#approximate-functions",
+    "title": "Introduction to BigQuery",
+    "section": "6.4 Approximate Functions",
+    "text": "6.4 Approximate Functions\nBigQuery also provides approximate functions that can be more efficient when an exact result is not required.\nOne example from the course was:\nAPPROX_COUNT_DISTINCT(p.order_id)\nThis provides an approximate count of distinct values and can be useful for large analytical datasets."
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#github-repository",
+    "href": "introduction-to-bigquery.html#github-repository",
+    "title": "Introduction to BigQuery",
+    "section": "10.1 GitHub Repository",
+    "text": "10.1 GitHub Repository\nIBM 6500 SQL Learning Portfolio"
+  },
+  {
+    "objectID": "introduction-to-bigquery.html#published-introduction-to-bigquery-report",
+    "href": "introduction-to-bigquery.html#published-introduction-to-bigquery-report",
+    "title": "Introduction to BigQuery",
+    "section": "10.2 Published Introduction to BigQuery Report",
+    "text": "10.2 Published Introduction to BigQuery Report\nPublished report URL:\nAdd the GitHub Pages URL here after the report is rendered and published. —"
   }
 ]
