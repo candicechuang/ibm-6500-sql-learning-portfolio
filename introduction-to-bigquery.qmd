@@ -315,6 +315,5 @@ For future coursework and my CEP, I think BigQuery could be especially useful wh
 
 ## Published Introduction to BigQuery Report
 
-**Published report URL:**  
-*Add the GitHub Pages URL here after the report is rendered and published.*
+[Published Introduction to BigQuery Report](https://candicechuang.github.io/ibm-6500-sql-learning-portfolio/introduction-to-bigquery.html)
 ---
