@@ -11,6 +11,5 @@ This portfolio collects my DataCamp course-completion evidence and practical lea
 ## Reports
 
 - [Introduction to SQL](introduction-to-sql.html)
-- Introduction to BigQuery (coming later)
+- [Introduction to BigQuery](introduction-to-bigquery.html)
 - Intermediate SQL (coming later)
-
